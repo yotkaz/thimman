@@ -15,6 +15,7 @@ abstract class Person(
         var firstName: String,
         var lastName: String
 ) {
+
     /** JPA needs empty constructor */
     constructor() : this(null, "", "") {
     }
