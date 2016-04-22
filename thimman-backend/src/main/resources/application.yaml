@@ -1,2 +1,17 @@
 server:
   port: 16669
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/thimman
+    username: thimman
+    password: type password here
+
+    test-while-idle: true
+    validation-query: SELECT 1
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
