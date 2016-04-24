@@ -12,12 +12,9 @@ abstract class Person(
         @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
         var id: Long? = null,
 
-        var firstName: String,
-        var lastName: String
+        var firstName: String = "",
+        var lastName: String = ""
 ) {
 
-    /** JPA needs empty constructor */
-    constructor() : this(null, "", "") {
-    }
 }
 

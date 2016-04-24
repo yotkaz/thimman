@@ -1,5 +1,6 @@
 package yotkaz.thimman.backend.model
 
+import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.Entity
 
@@ -8,13 +9,13 @@ import javax.persistence.Entity
  */
 @Entity
 class Employee(
-        id: Long?,
+        id: Long? = null,
         firstName: String,
         lastName: String,
         var employmentDate: Date?
 ) : Person(id, firstName, lastName) {
 
-    /** JPA needs empty constructor */
+    @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     constructor() : this(null, "", "", null) {
     }
 }

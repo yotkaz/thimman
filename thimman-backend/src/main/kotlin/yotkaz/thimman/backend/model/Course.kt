@@ -1,5 +1,6 @@
 package yotkaz.thimman.backend.model
 
+import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -11,13 +12,13 @@ import javax.persistence.Id
 class Course(
         @Id
         @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-        var id: Long?,
+        var id: Long? = null,
 
         var name: String,
         var description: String
 ) {
 
-    /** JPA needs empty constructor */
+    @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     constructor() : this(null, "", "") {
     }
 }
