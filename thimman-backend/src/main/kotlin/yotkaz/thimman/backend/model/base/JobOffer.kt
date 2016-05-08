@@ -2,6 +2,7 @@ package yotkaz.thimman.backend.model.base
 
 import yotkaz.thimman.backend.app.DEFAULT_STRING
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
+import java.util.*
 import javax.persistence.Entity
 
 @Entity
@@ -9,14 +10,16 @@ class JobOffer(
 
         id: Long? = null,
         name: String,
-        description: String
+        description: String,
+        activities: List<@JvmSuppressWildcards Activity>
 
-) : Subject(id, name, description) {
+) : Subject(id, name, description, activities) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    constructor() : this(
+    private constructor() : this(
             name = DEFAULT_STRING,
-            description = DEFAULT_STRING
+            description = DEFAULT_STRING,
+            activities = ArrayList()
     )
 
 }

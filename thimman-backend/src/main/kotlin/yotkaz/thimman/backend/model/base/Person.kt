@@ -13,6 +13,7 @@ abstract class Person(
 
         var firstName: String,
         var lastName: String,
+        @ManyToMany
         var declaredSkills: Set<Skill> = HashSet()
 
 )

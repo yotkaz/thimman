@@ -242,3 +242,4 @@ bower_components
 
 ### I don't need: ###
 .idea/
+config/

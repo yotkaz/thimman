@@ -11,6 +11,8 @@ abstract class Subject(
         var id: Long?,
 
         var name: String,
-        var description: String
+        var description: String,
+        @ManyToMany
+        var activities: List<@JvmSuppressWildcards Activity>
 
 )

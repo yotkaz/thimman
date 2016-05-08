@@ -6,6 +6,7 @@ import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
@@ -23,7 +24,7 @@ data class Meeting(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    constructor() : this(
+    private constructor() : this(
             subject = DEFAULT_STRING,
             place = DEFAULT_STRING,
             startTime = DEFAULT_DATE,

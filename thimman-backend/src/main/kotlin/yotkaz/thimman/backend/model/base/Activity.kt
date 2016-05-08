@@ -12,6 +12,7 @@ abstract class Activity(
 
         var name: String,
         var description: String,
-        var subjects: Set<Subject>
+        @ManyToMany
+        var subjects: Set<@JvmSuppressWildcards Subject>
 
 )

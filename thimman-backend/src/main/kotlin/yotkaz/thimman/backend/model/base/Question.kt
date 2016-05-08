@@ -3,9 +3,7 @@ package yotkaz.thimman.backend.model.base
 import yotkaz.thimman.backend.app.DEFAULT_STRING
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Question(
@@ -16,12 +14,15 @@ class Question(
 
         var name: String,
         var comment: String,
+        @ElementCollection
         var answers: Set<String> = HashSet(),
         correctAnswers: List<String> = ArrayList(),
+        @ManyToMany
         var requiredSkills: Set<Skill> = HashSet()
 
 ) {
 
+    @ElementCollection
     var correctAnswers: List<String> = ArrayList()
         set(newCorrectAnswers) {
             if (answers.containsAll(newCorrectAnswers)) {
@@ -36,7 +37,7 @@ class Question(
     }
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    constructor() : this(
+    private constructor() : this(
             name = DEFAULT_STRING,
             comment = DEFAULT_STRING
     )

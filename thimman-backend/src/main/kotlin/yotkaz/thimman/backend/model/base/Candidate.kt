@@ -15,7 +15,7 @@ class Candidate(
 ) : Person(id, firstName, lastName) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    constructor() : this(
+    private constructor() : this(
             firstName = DEFAULT_STRING,
             lastName = DEFAULT_STRING,
             cvLink = DEFAULT_STRING

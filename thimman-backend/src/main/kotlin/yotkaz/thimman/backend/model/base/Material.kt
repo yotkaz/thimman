@@ -11,13 +11,13 @@ class Material(
         id: Long? = null,
         name: String,
         description: String,
-        subjects: Set<Subject> = HashSet(),
+        subjects: Set<@JvmSuppressWildcards Subject> = HashSet(),
         link: String
 
 ) : Activity(id, name, description, subjects) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    constructor() : this(
+    private constructor() : this(
             name = DEFAULT_STRING,
             description = DEFAULT_STRING,
             link = DEFAULT_STRING
