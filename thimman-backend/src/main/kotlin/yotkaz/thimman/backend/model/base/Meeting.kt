@@ -4,13 +4,10 @@ import yotkaz.thimman.backend.app.DEFAULT_DATE
 import yotkaz.thimman.backend.app.DEFAULT_STRING
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
-data class Meeting(
+class Meeting(
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +16,11 @@ data class Meeting(
         var subject: String,
         var place: String,
         var startTime: Date,
-        var endTime: Date
+        var endTime: Date,
+        @OneToOne
+        var initiator: Person?,
+        @ManyToMany
+        var persons: Set<@JvmSuppressWildcards Person>
 
 ) {
 
@@ -28,7 +29,9 @@ data class Meeting(
             subject = DEFAULT_STRING,
             place = DEFAULT_STRING,
             startTime = DEFAULT_DATE,
-            endTime = DEFAULT_DATE
+            endTime = DEFAULT_DATE,
+            initiator = null,
+            persons = HashSet()
     )
 
 }

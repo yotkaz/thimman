@@ -3,7 +3,7 @@ package yotkaz.thimman.backend.model.base
 import javax.persistence.*
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 abstract class Activity(
 
         @Id

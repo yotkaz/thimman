@@ -1,6 +1,5 @@
 package yotkaz.thimman.backend.model.base
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -13,7 +12,15 @@ abstract class Person(
 
         var firstName: String,
         var lastName: String,
+        var email: String,
+        var phone: String?,
+        @Embedded
+        var contactAddress: Address?,
         @ManyToMany
-        var declaredSkills: Set<Skill> = HashSet()
+        var declaredSkills: Set<Skill>,
+        @ManyToMany
+        var connectedMeetings: List<Meeting>,
+        @OneToMany
+        var initiatedMeetings: List<Meeting>
 
 )

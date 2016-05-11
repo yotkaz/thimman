@@ -21,7 +21,8 @@ class MeetingDAOTest : CRUDTest<Meeting, Long, MeetingDAO>() {
                 subject = SUBJECT_TEST,
                 place = PLACE_BALI,
                 startTime = Date(),
-                endTime = Date()
+                endTime = Date(),
+                persons = HashSet()
         );
     }
 
