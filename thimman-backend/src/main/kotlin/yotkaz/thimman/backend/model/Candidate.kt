@@ -1,4 +1,4 @@
-package yotkaz.thimman.backend.model.base
+package yotkaz.thimman.backend.model
 
 import yotkaz.thimman.backend.app.DEFAULT_STRING
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR

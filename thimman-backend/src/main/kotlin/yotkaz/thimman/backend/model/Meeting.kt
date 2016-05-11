@@ -1,4 +1,4 @@
-package yotkaz.thimman.backend.model.base
+package yotkaz.thimman.backend.model
 
 import yotkaz.thimman.backend.app.DEFAULT_DATE
 import yotkaz.thimman.backend.app.DEFAULT_STRING

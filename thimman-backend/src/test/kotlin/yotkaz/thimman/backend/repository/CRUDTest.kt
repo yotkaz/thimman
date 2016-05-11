@@ -1,4 +1,4 @@
-package yotkaz.thimman.backend.dao
+package yotkaz.thimman.backend.repository
 
 import org.junit.Assert
 import org.junit.Test

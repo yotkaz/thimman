@@ -1,10 +1,10 @@
-package yotkaz.thimman.backend.model.base
+package yotkaz.thimman.backend.model
 
 import javax.persistence.*
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-abstract class Subject(
+abstract class Activity(
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +13,6 @@ abstract class Subject(
         var name: String,
         var description: String,
         @ManyToMany
-        var activities: List<@JvmSuppressWildcards Activity>
+        var subjects: Set<@JvmSuppressWildcards Subject>
 
 )

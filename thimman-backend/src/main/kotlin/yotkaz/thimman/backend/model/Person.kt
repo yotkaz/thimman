@@ -1,4 +1,4 @@
-package yotkaz.thimman.backend.model.base
+package yotkaz.thimman.backend.model
 
 import javax.persistence.*
 

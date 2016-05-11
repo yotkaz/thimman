@@ -1,4 +1,4 @@
-package yotkaz.thimman.backend.model.base
+package yotkaz.thimman.backend.model
 
 import yotkaz.thimman.backend.app.DEFAULT_STRING
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
@@ -7,21 +7,25 @@ import javax.persistence.Entity
 import javax.persistence.ManyToMany
 
 @Entity
-class Test(
+class Course(
 
         id: Long? = null,
         name: String,
         description: String,
-        subjects: Set<@JvmSuppressWildcards Subject> = HashSet(),
+        activities: List<@JvmSuppressWildcards Activity>,
         @ManyToMany
-        var questions: List<Question> = ArrayList()
+        var lessons: List<Lesson>,
+        @ManyToMany
+        var materials: List<Material> = ArrayList()
 
-) : Activity(id, name, description, subjects) {
+) : Subject(id, name, description, activities) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
             name = DEFAULT_STRING,
-            description = DEFAULT_STRING
+            description = DEFAULT_STRING,
+            activities = ArrayList(),
+            lessons = ArrayList()
     )
 
 }

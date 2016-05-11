@@ -1,15 +1,15 @@
-package yotkaz.thimman.backend.dao
+package yotkaz.thimman.backend.repository
 
 import org.junit.runner.RunWith
 import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import yotkaz.thimman.backend.app.Application
-import yotkaz.thimman.backend.model.base.Meeting
+import yotkaz.thimman.backend.model.Meeting
 import java.util.*
 
 @SpringApplicationConfiguration(Application::class)
 @RunWith(SpringJUnit4ClassRunner::class)
-class MeetingDAOTest : CRUDTest<Meeting, Long, MeetingDAO>() {
+class MeetingRepositoryTest : CRUDTest<Meeting, Long, MeetingRepository>() {
 
     val SUBJECT_TEST: String = "Test";
     val PLACE_BALI: String = "Bali";
@@ -22,7 +22,8 @@ class MeetingDAOTest : CRUDTest<Meeting, Long, MeetingDAO>() {
                 place = PLACE_BALI,
                 startTime = Date(),
                 endTime = Date(),
-                persons = HashSet()
+                persons = HashSet(),
+                initiator = null
         );
     }
 

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @SpringBootApplication
 @ComponentScan("yotkaz.thimman.backend")
 @EntityScan(basePackages = arrayOf("yotkaz.thimman.backend.model"))
-@EnableJpaRepositories(basePackages = arrayOf("yotkaz.thimman.backend.dao"))
+@EnableJpaRepositories(basePackages = arrayOf("yotkaz.thimman.backend.repository"))
 open class Application
 
 fun main(args: Array<String>) {
