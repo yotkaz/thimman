@@ -15,3 +15,7 @@ spring:
     hibernate:
       ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+security:
+  user:
+    password: admin
+    name: admin
