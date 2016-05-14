@@ -16,7 +16,7 @@ class Task(
         @ManyToMany
         var requiredSkills: Set<Skill> = HashSet()
 
-) : Activity(id, name, description, subjects) {
+) : Challange(id, name, description, subjects) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(

@@ -16,7 +16,7 @@ class Test(
         @ManyToMany
         var questions: List<Question> = ArrayList()
 
-) : Activity(id, name, description, subjects) {
+) : Challange(id, name, description, subjects) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
