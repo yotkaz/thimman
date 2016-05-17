@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
 @RestController
+@RequestMapping("/user")
 class UserController {
 
-    @RequestMapping("/user")
-    fun user(user: Principal): Principal {
-        return user;
-    }
+    @RequestMapping("/echo")
+    fun user(user: Principal): Principal = user;
 
 }
