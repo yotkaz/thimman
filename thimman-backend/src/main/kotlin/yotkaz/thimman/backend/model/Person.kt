@@ -1,26 +1,92 @@
 package yotkaz.thimman.backend.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
+import java.time.LocalDateTime
+import java.util.*
 import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-abstract class Person(
+data class Person(
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        var id: Long?,
+        var id: Long? = null,
 
+        @field:NotNull
         var firstName: String,
+
         var lastName: String,
-        var email: String,
-        var phone: String?,
+
         @Embedded
         var contactAddress: Address?,
-        @ManyToMany
-        var declaredSkills: Set<Skill>,
-        @ManyToMany
-        var connectedMeetings: List<Meeting>,
-        @OneToMany
-        var initiatedMeetings: List<Meeting>
 
-)
+        var email: String,
+
+        var phone: String? = null,
+
+        @Enumerated(EnumType.STRING)
+        @ElementCollection
+        var types: Set<@JvmSuppressWildcards PersonType>,
+
+        var cv: String? = null,
+
+        var employmentDate: LocalDateTime? = null,
+
+//        TODO: change to UserAccount object
+//        @OneToOne(fetch = FetchType.LAZY)
+//        @JsonBackReference
+//        var userAccount: Any,
+
+        @JsonManagedReference
+        @ManyToMany
+        var declaredSkills: List<Skill>,
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var connectedMeetings: List<Meeting> = ArrayList(),
+
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.LAZY)
+        var initiatedMeetings: List<Meeting> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var jobOffers: List<JobOffer> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var projects: List<Project> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var courses: List<Course> = ArrayList(),
+
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.LAZY)
+        var attempts: List<Attempt> = ArrayList(),
+
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.LAZY)
+        var ratedAttempts: List<Attempt> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var challengesAvailableToRate: List<Challenge> = ArrayList()
+
+) {
+
+    @Deprecated(JPA_EMPTY_CONSTRUCTOR)
+    private constructor() : this(
+            firstName = "",
+            lastName = "",
+            contactAddress = null,
+            email = "",
+            types = HashSet(),
+//            userAccount = null,
+            declaredSkills = ArrayList()
+    )
+
+}

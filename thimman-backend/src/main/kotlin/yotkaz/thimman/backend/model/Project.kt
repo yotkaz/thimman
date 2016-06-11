@@ -1,29 +1,39 @@
 package yotkaz.thimman.backend.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.ManyToMany
+import javax.persistence.*
 
 @Entity
-class Project(
+data class Project(
 
-        id: Long? = null,
-        name: String,
-        description: String,
-        activities: List<@JvmSuppressWildcards Activity>,
-        @ManyToMany
+        @Id
+        @GeneratedValue(strategy = GenerationType.TABLE)
+        var id: Long? = null,
+
+        var name: String,
+
+        var description: String,
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
         var courses: List<Course> = ArrayList(),
-        @ManyToMany
-        var materials: List<Material> = ArrayList()
 
-) : Subject(id, name, description, activities) {
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var employees: List<Person> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var jobOffers: List<JobOffer> = ArrayList()
+
+) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
             name = "",
-            description = "",
-            activities = ArrayList()
+            description = ""
     )
 
 }

@@ -1,34 +1,53 @@
 package yotkaz.thimman.backend.model
 
-import yotkaz.thimman.backend.app.DEFAULT_STRING
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.*
 
 @Entity
-class JobOffer(
+data class JobOffer(
 
-        id: Long? = null,
-        name: String,
-        description: String,
-        activities: List<@JvmSuppressWildcards Activity>,
+        @Id
+        @GeneratedValue(strategy = GenerationType.TABLE)
+        var id: Long? = null,
+
+        var name: String,
+
+        var description: String,
+
         @Enumerated(EnumType.STRING)
         var status: JobOfferStatus,
-        @ManyToMany
-        var requiredSkills: Set<Skill>,
-        @ManyToMany
-        var candidates: Set<Candidate>
 
-) : Subject(id, name, description, activities) {
+        @JsonManagedReference
+        @ManyToMany
+        var materials: List<Material> = ArrayList(),
+
+        @JsonManagedReference
+        @ManyToMany
+        var requiredSkills: List<Skill>,
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var candidates: List<Person> = ArrayList(),
+
+        @JsonIgnore
+        @ManyToMany(fetch = FetchType.LAZY)
+        var projects: List<Project> = ArrayList(),
+
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.LAZY)
+        var challenges: List<JobOfferChallenge> = ArrayList()
+
+) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
-            name = DEFAULT_STRING,
-            description = DEFAULT_STRING,
-            activities = ArrayList(),
+            name = "",
+            description = "",
             status = JobOfferStatus.AVAILABLE,
-            requiredSkills = HashSet(),
-            candidates = HashSet()
+            requiredSkills = ArrayList()
     )
 
 }

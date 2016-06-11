@@ -5,25 +5,26 @@ import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import yotkaz.thimman.backend.app.Application
 import yotkaz.thimman.backend.model.Meeting
+import java.time.LocalDateTime
 import java.util.*
 
 @SpringApplicationConfiguration(Application::class)
 @RunWith(SpringJUnit4ClassRunner::class)
 class MeetingRepositoryTest : CRUDTest<Meeting, Long, MeetingRepository>() {
 
-    val SUBJECT_TEST: String = "Test";
     val PLACE_BALI: String = "Bali";
     val PLACE_JAVA: String = "Java";
 
 
     override fun buildObject(): Meeting {
         return Meeting(
-                subject = SUBJECT_TEST,
+                subject = "Meeting",
+                description = "",
                 place = PLACE_BALI,
-                startTime = Date(),
-                endTime = Date(),
-                persons = HashSet(),
-                initiator = null
+                startTime = LocalDateTime.now(),
+                endTime = LocalDateTime.now(),
+                initiator = null,
+                persons = ArrayList()
         );
     }
 

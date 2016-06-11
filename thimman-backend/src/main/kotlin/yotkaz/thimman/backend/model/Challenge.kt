@@ -7,7 +7,7 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-data class Course(
+data class Challenge(
 
         @Id
         @GeneratedValue(strategy = GenerationType.TABLE)
@@ -17,24 +17,35 @@ data class Course(
 
         var description: String,
 
+        @Enumerated(EnumType.STRING)
+        var type: ChallangeType,
+
+        var reference: String? = null,
+
         @JsonManagedReference
-        @OneToMany(cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var lessons: List<Lesson> = ArrayList(),
+        @ManyToMany
+        var materials: List<Material> = ArrayList(),
 
         @JsonIgnore
         @ManyToMany(fetch = FetchType.LAZY)
-        var projects: List<Project> = ArrayList(),
+        var attempts: List<Attempt> = ArrayList(),
 
         @JsonIgnore
-        @ManyToMany(fetch = FetchType.LAZY)
-        var employees: List<Person> = ArrayList()
+        @OneToMany(fetch = FetchType.LAZY)
+        var jobOfferChallenges: List<JobOfferChallenge> = ArrayList(),
+
+        @JsonIgnore
+        @OneToMany(fetch = FetchType.LAZY)
+        var lessonChallenges: List<LessonChallenge> = ArrayList()
 
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
             name = "",
-            description = ""
+            description = "",
+            type = ChallangeType.TASK
     )
 
 }
+

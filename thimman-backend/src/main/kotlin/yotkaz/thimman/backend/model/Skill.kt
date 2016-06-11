@@ -1,6 +1,6 @@
 package yotkaz.thimman.backend.model
 
-import yotkaz.thimman.backend.app.DEFAULT_STRING
+import com.fasterxml.jackson.annotation.JsonBackReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.*
@@ -14,19 +14,21 @@ data class Skill(
 
         var name: String,
         var description: String,
-        @ManyToMany
-        var persons: Set<@JvmSuppressWildcards Person>,
-        @ManyToMany
-        var jobOffers: Set<JobOffer>
+
+        @JsonBackReference
+        @ManyToMany(fetch = FetchType.LAZY)
+        var persons: Set<Person> = HashSet(),
+
+        @JsonBackReference
+        @ManyToMany(fetch = FetchType.LAZY)
+        var jobOffers: Set<JobOffer> = HashSet()
 
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
     private constructor() : this(
-            name = DEFAULT_STRING,
-            description = DEFAULT_STRING,
-            persons = HashSet(),
-            jobOffers = HashSet()
+            name = "",
+            description = ""
     )
 
 }
