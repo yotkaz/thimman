@@ -2,6 +2,8 @@ package yotkaz.thimman.backend.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.CrudRepository
+import org.springframework.security.access.prepost.PostFilter
+import org.springframework.security.access.prepost.PreAuthorize
 import java.io.Serializable
 import java.util.*
 
@@ -9,8 +11,10 @@ abstract class AbstractCRUDService<EntityType, IdType, DAOType> : ICRUDService<E
     where DAOType : CrudRepository<EntityType, IdType>, IdType : Serializable{
 
     @Autowired
-    private lateinit var dao: DAOType;
+    protected lateinit var dao: DAOType;
 
+    @PreAuthorize("hasPermission('getAll')")
+    @PostFilter("hasPermission(filterObject, 'getOne')")
     override fun getAll(): List<EntityType> {
         with(ArrayList<EntityType>()) {
             addAll(dao.findAll());
@@ -18,10 +22,18 @@ abstract class AbstractCRUDService<EntityType, IdType, DAOType> : ICRUDService<E
         }
     }
 
+    @PreAuthorize("hasPermission(returnObject, 'getOne')")
     override fun getOne(id: IdType): EntityType = dao.findOne(id);
 
-    override fun save(entity: EntityType) = dao.save(entity);
+    @PreAuthorize("hasPermission(#entity, 'save')")
+    override fun save(entity: EntityType) : EntityType {
+        checkSaveConstraints(entity);
+        return dao.save(entity);
+    };
 
+    @PreAuthorize("hasPermission(#entity, 'delete')")
     override fun delete(entity: EntityType) = dao.delete(entity);
+
+    abstract fun checkSaveConstraints(entity: EntityType);
 
 }

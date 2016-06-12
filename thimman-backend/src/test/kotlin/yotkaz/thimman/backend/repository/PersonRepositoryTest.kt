@@ -35,7 +35,8 @@ class PersonRepositoryTest : CRUDTest<Person, Long, PersonRepository>() {
                 email = EMAIL_A,
                 types = setOf(PersonType.EMPLOYEE),
                 employmentDate = LocalDateTime.now(),
-                declaredSkills = ArrayList()
+                declaredSkills = ArrayList(),
+                user = null
         );
     }
 

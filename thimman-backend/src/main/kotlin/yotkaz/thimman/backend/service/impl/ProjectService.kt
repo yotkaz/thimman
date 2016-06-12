@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.ProjectRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class ProjectService : AbstractCRUDService<Project, Long, ProjectRepository>()
+class ProjectService : AbstractCRUDService<Project, Long, ProjectRepository>() {
+
+    override fun checkSaveConstraints(entity: Project) {
+        // nothing to do here
+    }
+
+}

@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.JobOfferRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class JobOfferService : AbstractCRUDService<JobOffer, Long, JobOfferRepository>()
+class JobOfferService : AbstractCRUDService<JobOffer, Long, JobOfferRepository>() {
+
+    override fun checkSaveConstraints(entity: JobOffer) {
+        // nothing to do here
+    }
+
+}

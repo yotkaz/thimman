@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.SkillRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class SkillService : AbstractCRUDService<Skill, Long, SkillRepository>()
+class SkillService : AbstractCRUDService<Skill, Long, SkillRepository>() {
+
+    override fun checkSaveConstraints(entity: Skill) {
+        // nothing to do here
+    }
+
+}

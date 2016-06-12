@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.CourseRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class CourseService : AbstractCRUDService<Course, Long, CourseRepository>()
+class CourseService : AbstractCRUDService<Course, Long, CourseRepository>() {
+
+    override fun checkSaveConstraints(entity: Course) {
+        // nothing to do here
+    }
+
+}

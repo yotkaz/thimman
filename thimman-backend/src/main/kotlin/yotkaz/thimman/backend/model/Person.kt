@@ -1,5 +1,6 @@
 package yotkaz.thimman.backend.model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
@@ -15,7 +16,6 @@ data class Person(
         @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long? = null,
 
-        @field:NotNull
         var firstName: String,
 
         var lastName: String,
@@ -35,10 +35,9 @@ data class Person(
 
         var employmentDate: LocalDateTime? = null,
 
-//        TODO: change to UserAccount object
-//        @OneToOne(fetch = FetchType.LAZY)
-//        @JsonBackReference
-//        var userAccount: Any,
+        @OneToOne(fetch = FetchType.LAZY)
+        @JsonBackReference
+        var user: User?,
 
         @JsonManagedReference
         @ManyToMany
@@ -85,7 +84,7 @@ data class Person(
             contactAddress = null,
             email = "",
             types = HashSet(),
-//            userAccount = null,
+            user = null,
             declaredSkills = ArrayList()
     )
 

@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.LessonRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class LessonService : AbstractCRUDService<Lesson, Long, LessonRepository>()
+class LessonService : AbstractCRUDService<Lesson, Long, LessonRepository>() {
+
+    override fun checkSaveConstraints(entity: Lesson) {
+        // nothing to do here
+    }
+
+}

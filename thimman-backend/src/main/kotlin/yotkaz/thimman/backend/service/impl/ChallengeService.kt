@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.ChallengeRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class ChallengeService : AbstractCRUDService<Challenge, Long, ChallengeRepository>()
+class ChallengeService : AbstractCRUDService<Challenge, Long, ChallengeRepository>() {
+
+    override fun checkSaveConstraints(entity: Challenge) {
+        // nothing to do here
+    }
+
+}

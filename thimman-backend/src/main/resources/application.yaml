@@ -1,3 +1,7 @@
+thimman:
+  meeting:
+    maxLength: 8
+
 server:
   port: 16669
 

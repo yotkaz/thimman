@@ -6,4 +6,10 @@ import yotkaz.thimman.backend.repository.MaterialRepository
 import yotkaz.thimman.backend.service.AbstractCRUDService
 
 @Service
-class MaterialService : AbstractCRUDService<Material, Long, MaterialRepository>()
+class MaterialService : AbstractCRUDService<Material, Long, MaterialRepository>() {
+
+    override fun checkSaveConstraints(entity: Material) {
+        // nothing to do here
+    }
+
+}

@@ -8,27 +8,27 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CsrfTokenRepository
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository
 
-//@Configuration
-//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-//open class SecurityConfiguration : WebSecurityConfigurerAdapter() {
-//
-//    override fun configure(http: HttpSecurity?) {
-//        http!!
-//            .httpBasic()
-//                .and()
-//            .authorizeRequests()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//            .csrf()
-//                .csrfTokenRepository(csrfTokenRepository());
-//    }
-//
-//    private fun csrfTokenRepository(): CsrfTokenRepository {
-//        with(HttpSessionCsrfTokenRepository()) {
-//            setHeaderName("X-XSRF-TOKEN");
-//            return this;
-//        }
-//    }
-//
-//}
+@Configuration
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+open class SecurityConfiguration : WebSecurityConfigurerAdapter() {
+
+    override fun configure(http: HttpSecurity?) {
+        http!!
+            .httpBasic()
+                .and()
+            .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+            .csrf()
+                .csrfTokenRepository(csrfTokenRepository());
+    }
+
+    private fun csrfTokenRepository(): CsrfTokenRepository {
+        with(HttpSessionCsrfTokenRepository()) {
+            setHeaderName("X-XSRF-TOKEN");
+            return this;
+        }
+    }
+
+}
