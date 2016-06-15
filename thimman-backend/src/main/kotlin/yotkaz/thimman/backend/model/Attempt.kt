@@ -17,10 +17,10 @@ data class Attempt(
         @ManyToOne
         var person: Person?,
 
-        @ManyToOne
+        @ManyToOne(fetch = javax.persistence.FetchType.EAGER)
         var challenge: Challenge?,
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.EAGER)
         var employeeWhichRated: Person? = null
 
 ) {

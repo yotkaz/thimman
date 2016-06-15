@@ -18,7 +18,7 @@ data class Course(
         var description: String,
 
         @JsonManagedReference
-        @OneToMany(cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        @OneToMany(cascade = arrayOf(CascadeType.ALL), fetch = FetchType.EAGER)
         var lessons: List<Lesson> = ArrayList(),
 
         @JsonIgnore

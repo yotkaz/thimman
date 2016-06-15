@@ -10,10 +10,10 @@ data class JobOfferChallenge(
         @GeneratedValue(strategy = GenerationType.TABLE)
         var id: Long? = null,
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.EAGER)
         var jobOffer: JobOffer?,
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.EAGER)
         var challenge: Challenge?,
 
         @Embedded

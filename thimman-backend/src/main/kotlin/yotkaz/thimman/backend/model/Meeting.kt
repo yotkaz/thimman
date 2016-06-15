@@ -24,11 +24,11 @@ data class Meeting(
         var endTime: LocalDateTime,
 
         @JsonManagedReference
-        @OneToOne(fetch = FetchType.LAZY)
+        @OneToOne(fetch = FetchType.EAGER)
         var initiator: Person?,
 
         @JsonManagedReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var persons: List<Person>
 
 ) {

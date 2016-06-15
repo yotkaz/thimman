@@ -44,13 +44,13 @@ abstract class AbstractCRUDController<ObjectType, IdType, ServiceType>
         service.save(obj)
     }
 
-    @RequestMapping("/delete", method = arrayOf(RequestMethod.DELETE))
-    fun delete(obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
-        crudLog(userDetails, CRUDLogType.DELETE, obj.toString())
-        service.delete(obj)
-    }
+//    @RequestMapping("/delete", method = arrayOf(RequestMethod.DELETE))
+//    fun delete(obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
+//        crudLog(userDetails, CRUDLogType.DELETE, obj.toString())
+//        service.delete(obj)
+//    }
 
-    @RequestMapping("/delete/{id}", method = arrayOf(RequestMethod.DELETE))
+    @RequestMapping("/{id}", method = arrayOf(RequestMethod.DELETE))
     fun delete(@PathVariable id: IdType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
         crudLog(userDetails, CRUDLogType.DELETE, id.toString())
         service.delete(service.getOne(id));

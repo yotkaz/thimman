@@ -28,19 +28,19 @@ data class Person(
         var phone: String? = null,
 
         @Enumerated(EnumType.STRING)
-        @ElementCollection
+        @ElementCollection(fetch = FetchType.EAGER)
         var types: Set<@JvmSuppressWildcards PersonType>,
 
         var cv: String? = null,
 
         var employmentDate: LocalDateTime? = null,
 
-        @OneToOne(fetch = FetchType.LAZY)
+        @OneToOne(fetch = FetchType.EAGER)
         @JsonBackReference
         var user: User?,
 
         @JsonManagedReference
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         var declaredSkills: List<Skill>,
 
         @JsonIgnore

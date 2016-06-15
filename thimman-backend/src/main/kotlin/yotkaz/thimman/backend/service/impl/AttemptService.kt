@@ -21,8 +21,8 @@ class AttemptService : AbstractCRUDService<Attempt, Long, AttemptRepository>() {
     }
 
     override fun checkSaveConstraints(entity: Attempt) {
-        entity.person ?: throw IllegalArgumentException("There must be a person assigned to attempt; $entity");
-        entity.challenge ?: throw IllegalArgumentException("There must be a challenge assigned to attempt; $entity");
+        entity.person ?: throw IllegalArgumentException("There must be a person assigned to the attempt; $entity");
+        entity.challenge ?: throw IllegalArgumentException("There must be a challenge assigned to the attempt; $entity");
         entity.id ?: checkCreateConstraints(entity);
         checkScore(entity);
         checkMaxAttemptsCount(entity);

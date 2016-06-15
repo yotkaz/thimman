@@ -21,11 +21,11 @@ data class JobOffer(
         var status: JobOfferStatus,
 
         @JsonManagedReference
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         var materials: List<Material> = ArrayList(),
 
         @JsonManagedReference
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         var requiredSkills: List<Skill>,
 
         @JsonIgnore

@@ -1,5 +1,7 @@
 <p>Available job offers: </p>
-<ul>
-    <li>abc</li>
-    <li>qwerty</li>
+
+<ul class="job-offers">
+    <li *ngFor="let jobOffer of jobOffers">
+        {{jobOffer.id}} {{jobOffer.name}}
+    </li>
 </ul>

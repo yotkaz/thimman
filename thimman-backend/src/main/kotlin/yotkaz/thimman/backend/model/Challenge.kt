@@ -23,7 +23,7 @@ data class Challenge(
         var reference: String? = null,
 
         @JsonManagedReference
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         var materials: List<Material> = ArrayList(),
 
         @JsonIgnore

@@ -36,5 +36,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa"
     compile "org.springframework.boot:spring-boot-starter-security"
     compile "mysql:mysql-connector-java"
+    compile "org.hibernate:hibernate-core:5.1.0.Final"
+    compile "org.hibernate:hibernate-entitymanager:5.1.0.Final"
+    compile "org.hibernate:hibernate-java8:5.1.0.Final"
     testCompile "org.springframework.boot:spring-boot-starter-test"
 }

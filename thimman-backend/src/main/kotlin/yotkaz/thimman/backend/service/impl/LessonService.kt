@@ -9,7 +9,8 @@ import yotkaz.thimman.backend.service.AbstractCRUDService
 class LessonService : AbstractCRUDService<Lesson, Long, LessonRepository>() {
 
     override fun checkSaveConstraints(entity: Lesson) {
-        // nothing to do here
+        entity.course ?: throw IllegalArgumentException("There must be a course assigned to the lesson; $entity");
+
     }
 
 }

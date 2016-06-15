@@ -11,8 +11,12 @@ import yotkaz.thimman.backend.repository.UserRepository
 @Service
 class ThimmanUserDetailsService : UserDetailsService {
 
-    @Autowired
     lateinit var userRepository: UserRepository;
+
+    @Autowired
+    constructor(userRepository: UserRepository) {
+        this.userRepository = userRepository;
+    }
 
     override fun loadUserByUsername(username: String?): UserDetails? {
         val user: User? = userRepository.findByName(username);

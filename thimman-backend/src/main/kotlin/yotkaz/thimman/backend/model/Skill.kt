@@ -16,11 +16,11 @@ data class Skill(
         var description: String,
 
         @JsonBackReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var persons: Set<Person> = HashSet(),
 
         @JsonBackReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var jobOffers: Set<JobOffer> = HashSet()
 
 ) {

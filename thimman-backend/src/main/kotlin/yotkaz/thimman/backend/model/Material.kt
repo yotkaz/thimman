@@ -19,15 +19,15 @@ data class Material(
         var reference: String,
 
         @JsonBackReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var lessons: List<Lesson> = ArrayList(),
 
         @JsonBackReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var challenges: List<Challenge> = ArrayList(),
 
         @JsonBackReference
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         var jobOffers: List<JobOffer> = ArrayList()
 
 ) {

@@ -1,5 +1,6 @@
 package yotkaz.thimman.backend.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.time.LocalDateTime
@@ -16,12 +17,13 @@ open class User(
         @Column(unique = true)
         var name: String,
 
+        @JsonIgnore
         var password: String,
 
         var registrationDate: LocalDateTime,
 
         @Enumerated(EnumType.STRING)
-        @ElementCollection
+        @ElementCollection(fetch = FetchType.EAGER)
         var roles: Set<@JvmSuppressWildcards UserRole>,
 
         @JsonManagedReference
