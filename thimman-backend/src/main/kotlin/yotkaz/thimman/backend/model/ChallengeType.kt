@@ -1,6 +1,6 @@
 package yotkaz.thimman.backend.model
 
-enum class ChallangeType {
+enum class ChallengeType {
 
     TEST, TASK
 

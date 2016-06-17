@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    padding: 0 16px;
+}
+
+.skill-label {
+    margin-left: 3px;
+}
+
+.add-button {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+

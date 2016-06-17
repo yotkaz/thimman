@@ -1,7 +1,6 @@
 package yotkaz.thimman.backend.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.*
@@ -21,7 +20,7 @@ data class Lesson(
         @ManyToOne(fetch = FetchType.LAZY)
         var course: Course?,
 
-        @JsonManagedReference
+        @JsonIgnore
         @ManyToMany(fetch = FetchType.EAGER)
         var materials: List<Material> = ArrayList(),
 
@@ -32,7 +31,7 @@ data class Lesson(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             name = "",
             description = "",
             course = null

@@ -137,7 +137,7 @@ class ThimmanPermissionEvaluator : PermissionEvaluator {
 
     private fun isAnyJobOfferContainsProject(jobOffers: Collection<JobOffer>, project: Project) : Boolean {
         return jobOffers.any {
-            jobOffer -> jobOffer.projects.contains(project);
+            jobOffer -> jobOffer.project == project;
         }
     }
 

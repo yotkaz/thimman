@@ -1,0 +1,37 @@
+<h3>Choose required skills</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Available skills</h4>
+        <ul class="list-group">
+            <button *ngFor="let skill of skills"
+                    type="button"
+                    class="list-group-item job-offer-item"
+                    (click)="leftClick(skill)">
+                {{skill.name}}
+            </button>
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Required skills</h4>
+        <ul class="list-group">
+            <button *ngFor="let skill of requiredSkills"
+                    type="button"
+                    class="list-group-item job-offer-item"
+                    (click)="rightClick(skill)">
+                {{skill.name}}
+            </button>
+        </ul>
+    </div>
+</div>
+<button class="btn btn-danger"
+        type="submit"
+        (click)="cancel()">
+    Cancel
+</button>
+<button class="btn btn-primary"
+        type="submit"
+        (click)="next()">
+    Next
+</button>

@@ -16,7 +16,7 @@ data class Address(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             country = "",
             city = "",
             street = "",

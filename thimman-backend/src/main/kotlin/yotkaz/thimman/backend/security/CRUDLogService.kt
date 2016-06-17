@@ -40,6 +40,7 @@ class CRUDLogService {
         if (logBoolean) {
             log.info(
                     """
+                    |CRUD Action
                     |User: ${userDetails.username}
                     |Controller: $controller
                     |Action: $action

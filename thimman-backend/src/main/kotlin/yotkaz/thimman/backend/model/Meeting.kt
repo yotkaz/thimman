@@ -1,6 +1,5 @@
 package yotkaz.thimman.backend.model
 
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.time.LocalDateTime
 import java.util.*
@@ -23,18 +22,16 @@ data class Meeting(
 
         var endTime: LocalDateTime,
 
-        @JsonManagedReference
         @OneToOne(fetch = FetchType.EAGER)
         var initiator: Person?,
 
-        @JsonManagedReference
         @ManyToMany(fetch = FetchType.EAGER)
         var persons: List<Person>
 
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             subject = "",
             description = "",
             place = "",

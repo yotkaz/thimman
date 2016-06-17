@@ -3,6 +3,7 @@ package yotkaz.thimman.backend.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import yotkaz.thimman.backend.security.CRUDLogService
@@ -21,7 +22,7 @@ abstract class AbstractCRUDController<ObjectType, IdType, ServiceType>
     protected lateinit var service: ServiceType;
 
     @RequestMapping(method = arrayOf(RequestMethod.POST))
-    fun create(obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
+    fun create(@RequestBody obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
         crudLog(userDetails, CRUDLogType.CREATE, obj.toString())
         service.save(obj);
     }
@@ -39,7 +40,7 @@ abstract class AbstractCRUDController<ObjectType, IdType, ServiceType>
     }
 
     @RequestMapping("/{id}", method = arrayOf(RequestMethod.PUT))
-    fun update(obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
+    fun update(@RequestBody obj: ObjectType, @AuthenticationPrincipal userDetails: ThimmanUserDetails) {
         crudLog(userDetails, CRUDLogType.UPDATE, obj.toString())
         service.save(obj)
     }

@@ -1,0 +1,47 @@
+<form>
+    <div class="form-group">
+        <label for="jobOfferNameInput">Name</label>
+        <input type="text"
+               class="form-control"
+               id="jobOfferNameInput"
+               placeholder="name"
+               required
+               [(ngModel)]="jobOffer.name">
+    </div>
+    <div class="form-group">
+        <label for="jobOfferDescriptionInput">Description</label>
+        <textarea class="form-control"
+                  id="jobOfferDescriptionInput"
+                  placeholder="description"
+                  required
+                  [(ngModel)]="jobOffer.description">
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label for="jobOfferProjectInput">Project</label>
+        <select class="form-control" id="jobOfferProjectInput">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="jobOfferInitialStateInput">InitialState</label>
+        <select class="form-control"
+                id="jobOfferInitialStateInput"
+                required
+                [(ngModel)]="jobOffer.status">
+            <option>AVAILABLE</option>
+            <option>SUSPENDED</option>
+            <option>OUTDATED</option>
+        </select>
+    </div>
+</form>
+<button class="btn btn-danger"
+        type="submit"
+        (click)="cancel()">
+    Cancel
+</button>
+<button class="btn btn-primary"
+        type="submit"
+        (click)="next()">
+    Next
+</button>

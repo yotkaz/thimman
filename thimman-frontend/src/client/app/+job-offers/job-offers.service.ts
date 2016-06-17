@@ -2,18 +2,38 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { JobOffer } from './job-offer';
+import {Project} from "./project";
+import {Skill} from "./skill";
+import {Challenge} from "./challenge";
 
 @Injectable()
-export class JobOfferService {
-    private jobOffersUrl = 'http://localhost:18804/job-offers';
+export class JobOffersService {
+    // TODO: burn it all
+    // I don't have time to write all these things in 'clear' way
+    private baseUrl = 'http://dev4.yotkaz.me';
+    private jobOffersUrl = this.baseUrl + '/job-offers';
+    private testsUrl = this.baseUrl + '/challenges/tests';
+    private tasksUrl = this.baseUrl + '/challenges/tasks';
+    private projectsUrl = this.baseUrl + '/projects';
+    private skillsUrl = this.baseUrl + '/skills';
 
-    constructor(private http: Http) { }
+    private headersGet = new Headers();
+    private headersPost = new Headers();
+
+    constructor(private http: Http) {
+        this.headersGet
+            .append('Authorization', 'Basic ' + btoa("admin:admin")); // TODO: auth
+        this.headersPost
+            .append('Content-Type', 'application/json');
+        this.headersPost
+            .append('Authorization', 'Basic ' + btoa("admin:admin"));
+        this.headersPost
+            .append('Accept', 'application/json');
+    }
 
     getJobOffers(): Promise<JobOffer[]> {
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa("admin:admin")); // TODO: auth
         return this.http.get(this.jobOffersUrl, {
-            headers: headers
+            headers: this.headersGet
         })
             .toPromise()
             .then(response => response.json())
@@ -44,13 +64,10 @@ export class JobOfferService {
             .catch(this.handleError);
     }
 
-    private post(jobOffer: JobOffer): Promise<JobOffer> {
-        let headers = new Headers({
-            'Content-Type': 'application/json'});
+    private post(jobOffer: JobOffer) {
         return this.http
-            .post(this.jobOffersUrl, JSON.stringify(jobOffer), {headers: headers})
+            .post(this.jobOffersUrl, JSON.stringify(jobOffer), {headers: this.headersPost})
             .toPromise()
-            .then(res => res.json().data)
             .catch(this.handleError);
     }
 
@@ -61,7 +78,49 @@ export class JobOfferService {
         return this.http
             .put(url, JSON.stringify(jobOffer), {headers: headers})
             .toPromise()
-            .then(() => jobOffer)
+            .catch(this.handleError);
+    }
+
+    getProjects(): Promise<Project[]> {
+        return this.http.get(this.projectsUrl, {
+            headers: this.headersGet
+        })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
+    getSkills(): Promise<Skill[]> {
+        return this.http.get(this.skillsUrl, {
+            headers: this.headersGet
+        })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
+    getTests(): Promise<Challenge[]> {
+        return this.http.get(this.testsUrl, {
+            headers: this.headersGet
+        })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
+    getTasks(): Promise<Challenge[]> {
+        return this.http.get(this.tasksUrl, {
+            headers: this.headersGet
+        })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
+    saveSkill(skill: Skill) {
+        return this.http
+            .post(this.skillsUrl, JSON.stringify(skill), {headers: this.headersPost})
+            .toPromise()
             .catch(this.handleError);
     }
 

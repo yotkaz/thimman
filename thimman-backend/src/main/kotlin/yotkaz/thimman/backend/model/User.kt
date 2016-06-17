@@ -1,7 +1,6 @@
 package yotkaz.thimman.backend.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.time.LocalDateTime
 import java.util.*
@@ -26,7 +25,6 @@ open class User(
         @ElementCollection(fetch = FetchType.EAGER)
         var roles: Set<@JvmSuppressWildcards UserRole>,
 
-        @JsonManagedReference
         @OneToOne
         var person: Person?
 
@@ -62,7 +60,7 @@ open class User(
 
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             name = "",
             password = "",
             registrationDate = LocalDateTime.now(),

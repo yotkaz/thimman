@@ -22,7 +22,7 @@ data class JobOfferChallenge(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             jobOffer = null,
             challenge = null
     )

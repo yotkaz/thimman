@@ -4,7 +4,7 @@ import org.junit.runner.RunWith
 import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import yotkaz.thimman.backend.app.Application
-import yotkaz.thimman.backend.model.ChallangeType
+import yotkaz.thimman.backend.model.ChallengeType
 import yotkaz.thimman.backend.model.Challenge
 
 @SpringApplicationConfiguration(Application::class)
@@ -18,7 +18,7 @@ class ChallengeRepositoryTest : CRUDTest<Challenge, Long, ChallengeRepository>()
         return Challenge(
                 name = "Challenge",
                 description = DESC_A,
-                type = ChallangeType.TASK
+                type = ChallengeType.TASK
         );
     }
 

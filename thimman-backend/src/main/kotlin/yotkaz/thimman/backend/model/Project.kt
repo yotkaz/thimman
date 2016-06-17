@@ -25,13 +25,13 @@ data class Project(
         var employees: List<Person> = ArrayList(),
 
         @JsonIgnore
-        @ManyToMany(fetch = FetchType.LAZY)
+        @OneToMany(fetch = FetchType.LAZY)
         var jobOffers: List<JobOffer> = ArrayList()
 
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             name = "",
             description = ""
     )

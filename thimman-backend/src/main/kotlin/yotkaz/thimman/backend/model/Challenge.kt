@@ -1,7 +1,6 @@
 package yotkaz.thimman.backend.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
 import javax.persistence.*
@@ -18,11 +17,11 @@ data class Challenge(
         var description: String,
 
         @Enumerated(EnumType.STRING)
-        var type: ChallangeType,
+        var type: ChallengeType,
 
         var reference: String? = null,
 
-        @JsonManagedReference
+        @JsonIgnore
         @ManyToMany(fetch = FetchType.EAGER)
         var materials: List<Material> = ArrayList(),
 
@@ -41,10 +40,10 @@ data class Challenge(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             name = "",
             description = "",
-            type = ChallangeType.TASK
+            type = ChallengeType.TASK
     )
 
 }

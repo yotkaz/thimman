@@ -12,7 +12,7 @@ data class ChallengeAttributes(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             passMark = 0.0,
             maxAttempts = 0
     )

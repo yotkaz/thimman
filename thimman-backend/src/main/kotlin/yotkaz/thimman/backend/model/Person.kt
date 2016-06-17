@@ -1,13 +1,10 @@
 package yotkaz.thimman.backend.model
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
-import javax.validation.constraints.NotNull
 
 @Entity
 data class Person(
@@ -35,11 +32,10 @@ data class Person(
 
         var employmentDate: LocalDateTime? = null,
 
+        @JsonIgnore
         @OneToOne(fetch = FetchType.EAGER)
-        @JsonBackReference
         var user: User?,
 
-        @JsonManagedReference
         @ManyToMany(fetch = FetchType.EAGER)
         var declaredSkills: List<Skill>,
 
@@ -78,7 +74,7 @@ data class Person(
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             firstName = "",
             lastName = "",
             contactAddress = null,

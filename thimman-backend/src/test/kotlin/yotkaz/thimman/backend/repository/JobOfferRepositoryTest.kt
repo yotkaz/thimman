@@ -20,7 +20,8 @@ class JobOfferRepositoryTest : CRUDTest<JobOffer, Long, JobOfferRepository>() {
                 name = "JobOffer",
                 description = DESC_A,
                 status = JobOfferStatus.AVAILABLE,
-                requiredSkills = ArrayList()
+                requiredSkills = ArrayList(),
+                project = null
         );
     }
 

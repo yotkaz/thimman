@@ -1,9 +1,12 @@
 package yotkaz.thimman.backend.model
 
-import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import yotkaz.thimman.backend.app.JPA_EMPTY_CONSTRUCTOR
 import java.util.*
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.ManyToMany
 
 @Entity
 data class Material(
@@ -18,22 +21,22 @@ data class Material(
 
         var reference: String,
 
-        @JsonBackReference
+        @JsonIgnore
         @ManyToMany(fetch = FetchType.EAGER)
         var lessons: List<Lesson> = ArrayList(),
 
-        @JsonBackReference
+        @JsonIgnore
         @ManyToMany(fetch = FetchType.EAGER)
         var challenges: List<Challenge> = ArrayList(),
 
-        @JsonBackReference
+        @JsonIgnore
         @ManyToMany(fetch = FetchType.EAGER)
         var jobOffers: List<JobOffer> = ArrayList()
 
 ) {
 
     @Deprecated(JPA_EMPTY_CONSTRUCTOR)
-    private constructor() : this(
+    constructor() : this(
             name = "",
             description = "",
             reference = ""
