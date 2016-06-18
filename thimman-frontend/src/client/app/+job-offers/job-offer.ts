@@ -7,6 +7,6 @@ export class JobOffer {
     description: string;
     status: string;
     project: Project;
-    requiredSkills: Skill[];
-    challenges: Challenge[];
+    requiredSkills: Skill[] = [];
+    challenges: Challenge[] = [];
 }

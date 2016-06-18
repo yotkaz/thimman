@@ -5,6 +5,7 @@ import {JobOffersService} from "../../job-offers.service";
 import {NewJobOfferService} from "../new-job-offer.service";
 import {Project} from "../../project";
 import {Skill} from "../../skill";
+import 'rxjs/add/operator/toPromise';
 
 @Component({
     templateUrl: 'app/+job-offers/new/skills/new-job-offer-skills.component.html',
@@ -29,6 +30,7 @@ export class NewJobOfferSkillsComponent implements OnInit  {
 
     ngOnInit() {
         this.jobOffer = this.newJobOfferService.jobOffer;
+        this.requiredSkills = this.jobOffer.requiredSkills;
         this.getSkills();
     }
 
@@ -42,20 +44,33 @@ export class NewJobOfferSkillsComponent implements OnInit  {
     getSkills() {
         this.jobOfferService
             .getSkills()
-            .then(skills => this.skills = skills)
-            .catch(error => this.error = error); // TODO: Display error message
+            .then(skills => {
+                var index;
+                for (index = 0; index < skills.length; index++) {
+                    if (!contains(this.requiredSkills, skills[index])) {
+                        this.skills.push(skills[index]);
+                    }
+                }
+            });
     }
 
-    next() {
+    save() {
         this.jobOffer.requiredSkills = this.requiredSkills;
         this.newJobOfferService.jobOffer = this.jobOffer;
-        this.jobOfferService.save(this.jobOffer);
-        this.router.navigate(['/job-offers']);
+        this.jobOfferService.save(this.jobOffer).then(sth => {
+            this.router.navigate(['/job-offers']);
+        });
     }
 
     cancel() {
         this.newJobOfferService.jobOffer = new JobOffer();
         this.router.navigate(['/job-offers']);
+    }
+
+    gotoNewSkill() {
+        this.jobOffer.requiredSkills = this.requiredSkills;
+        this.newJobOfferService.jobOffer = this.jobOffer;
+        this.router.navigate(['/job-offers/new/new-skill']);
     }
 
     leftClick(skill: Skill) {
@@ -75,4 +90,13 @@ export class NewJobOfferSkillsComponent implements OnInit  {
     }
 
 
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i].id == obj.id) {
+            return true;
+        }
+    }
+    return false;
 }

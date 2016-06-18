@@ -11,6 +11,12 @@
                 {{skill.name}}
             </button>
         </ul>
+        <button type="button"
+                class="list-group-item job-offer-item add-button"
+                (click)="gotoNewSkill()">
+            Add skill
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>
+        </button>
     </div>
 
     <div class="col-md-6">
@@ -32,6 +38,6 @@
 </button>
 <button class="btn btn-primary"
         type="submit"
-        (click)="next()">
-    Next
+        (click)="save()">
+    Save
 </button>

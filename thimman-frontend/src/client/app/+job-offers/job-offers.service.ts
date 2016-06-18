@@ -47,7 +47,7 @@ export class JobOffersService {
             .catch(this.handleError);
     }
 
-    save(jobOffer: JobOffer): Promise<JobOffer>  {
+    save(jobOffer: JobOffer)  {
         if (jobOffer.id) {
             return this.put(jobOffer);
         }
@@ -67,8 +67,7 @@ export class JobOffersService {
     private post(jobOffer: JobOffer) {
         return this.http
             .post(this.jobOffersUrl, JSON.stringify(jobOffer), {headers: this.headersPost})
-            .toPromise()
-            .catch(this.handleError);
+            .toPromise();
     }
 
     private put(jobOffer: JobOffer) {
@@ -120,8 +119,7 @@ export class JobOffersService {
     saveSkill(skill: Skill) {
         return this.http
             .post(this.skillsUrl, JSON.stringify(skill), {headers: this.headersPost})
-            .toPromise()
-            .catch(this.handleError);
+            .toPromise();
     }
 
     private handleError(error: any) {

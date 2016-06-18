@@ -2,6 +2,7 @@ import {JobOffersComponent} from "./list/job-offers.component";
 import {NewJobOfferComponent} from "./new/new-job-offer.component";
 import {NewJobOfferStartComponent} from "./new/start/new-job-offer-start.component";
 import {NewJobOfferSkillsComponent} from "./new/skills/new-job-offer-skills.component";
+import {NewJobOfferNewSkillComponent} from "./new/new-skill/new-job-offer-new-skill.component";
 export const JobOfferRoutes = [
     {
         path: '/job-offers',
@@ -23,6 +24,10 @@ export const JobOfferRoutes = [
             {
                 path: '/skills',
                 component: NewJobOfferSkillsComponent,
+            },
+            {
+                path: '/new-skill',
+                component: NewJobOfferNewSkillComponent,
             }
         ]
     }
